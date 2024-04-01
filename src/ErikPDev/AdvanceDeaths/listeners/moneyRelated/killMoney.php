@@ -55,7 +55,7 @@ class killMoney implements Listener {
 		if(!$damageCause->getDamager() instanceof Player) return;
 
 		/** @var Player $player */
-		$player = $damageCause->getDamager();
+		$player = $event->getPlayer();
 		$this->currencyManager->getMoney($player)->onCompletion(
         /**
          * @throws ErrorException

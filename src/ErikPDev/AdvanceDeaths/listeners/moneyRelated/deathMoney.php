@@ -14,8 +14,8 @@ class deathMoney implements Listener {
 	private currencyManager $currencyManager;
 
 	private static array $wordTranslation = array(
-		"gain" => "gained",
-		"lose" => "lost"
+		"gain" => "ganaste",
+		"lose" => "perdiste"
 	);
 
 	public function __construct(private array $configuration) {

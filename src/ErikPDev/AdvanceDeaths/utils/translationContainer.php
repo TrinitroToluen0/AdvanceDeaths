@@ -17,7 +17,7 @@ class translationContainer {
 	public static function translate(string $translationString, bool $showPrefix, array $params): array|string {
 
 		$prefix = match ($showPrefix) {
-			true => " ", // Make this customizable in config ??
+			true => "", // Make this customizable in config ??
 			default => "",
 		};
 

@@ -9,7 +9,8 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\player\Player;
 
-class deathMoney implements Listener {
+class deathMoney implements Listener
+{
 
 	private currencyManager $currencyManager;
 
@@ -18,13 +19,14 @@ class deathMoney implements Listener {
 		"lose" => "perdiste"
 	);
 
-	public function __construct(private array $configuration) {
+	public function __construct(private array $configuration)
+	{
 
 		$this->currencyManager = new currencyManager();
-
 	}
 
-	private function modifyMoney(Player $player, float $amount, string $type) {
+	private function modifyMoney(Player $player, float $amount, string $type)
+	{
 
 		switch (strtolower($type)) {
 			case "lose":
@@ -38,10 +40,10 @@ class deathMoney implements Listener {
 			default:
 				throw new ErrorException("Unknown value type at deathMoney, check your configuration.");
 		}
-
 	}
 
-	public function deathEvent(PlayerDeathEvent $event) {
+	public function deathEvent(PlayerDeathEvent $event)
+	{
 
 		$player = $event->getPlayer();
 		$this->currencyManager->getMoney($player)->onCompletion(
@@ -53,12 +55,13 @@ class deathMoney implements Listener {
 					default => throw new ErrorException("Death Type is invalid, check your configuration."),
 				};
 
-				$this->modifyMoney($player, $amount, $this->configuration["valueType"]);
-				$player->sendMessage(translationContainer::translate("deathMoney", true, array("1" => self::$wordTranslation[$this->configuration["valueType"]], "2" => $amount)));
-
+				if ($amount > 0) {
+					$this->modifyMoney($player, $amount, $this->configuration["valueType"]);
+					$player->sendMessage(translationContainer::translate("deathMoney", true, array("1" => self::$wordTranslation[$this->configuration["valueType"]], "2" => $amount)));
+				}
 			},
 			function () {
-			});
+			}
+		);
 	}
-
 }

@@ -68,8 +68,10 @@ class killMoney implements Listener {
 					default => throw new ErrorException("Kill Type is invalid, check your configuration."),
 				};
 
-				$this->modifyMoney($player, $amount, $this->configuration["valueType"]);
-				$player->sendMessage(translationContainer::translate("killMoney", true, array("1" => self::$wordTranslation[$this->configuration["valueType"]], "2" => $amount)));
+				if($amount > 0 ) {
+					$this->modifyMoney($player, $amount, $this->configuration["valueType"]);
+					$player->sendMessage(translationContainer::translate("killMoney", true, array("1" => self::$wordTranslation[$this->configuration["valueType"]], "2" => $amount)));
+				}
 
 			},
 		function(){});

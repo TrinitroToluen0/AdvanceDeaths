@@ -96,4 +96,3 @@ Here are the variables used to modify the death messages.
 |---------------|-----------------------------|-------------------|---------|
 | advancedeaths | See an online player stats. | advancedeaths.use | True    |
 | ads           | See an online player stats. | advancedeaths.use | True    |
-
